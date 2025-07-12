@@ -10,25 +10,23 @@ class AdminHomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // inflamos el binding basado en activity_admin_home.xml
         binding = ActivityAdminHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // listeners de botones
+        // Materiales
         binding.btnMaterials.setOnClickListener {
             startActivity(Intent(this, MaterialListActivity::class.java))
         }
 
-        binding.btnNotif.setOnClickListener {
-            // Si tu NotificationActivity espera un eventId, pásalo aquí;
-            // si no, simplemente lanza la pantalla genérica:
-            val intent = Intent(this, NotificationActivity::class.java)
-            // intent.putExtra("eventId", /* algún id válido o -1 */)
-            startActivity(intent)
+        // Productos (usamos la actividad que tu compañero creó)
+        binding.btnProducts.setOnClickListener {
+            startActivity(Intent(this, ProductosListActivity::class.java))
         }
 
-        // binding.btnProducts.setOnClickListener { ... }
-        // binding.btnEvents.setOnClickListener { ... }
-        // binding.btnNotif.setOnClickListener { ... }
+
+        // Notificaciones
+        binding.btnNotif.setOnClickListener {
+            startActivity(Intent(this, NotificationActivity::class.java))
+        }
     }
 }
