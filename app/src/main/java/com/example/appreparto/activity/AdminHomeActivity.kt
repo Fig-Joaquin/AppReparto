@@ -6,20 +6,25 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.appreparto.databinding.ActivityAdminHomeBinding
 
 class AdminHomeActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityAdminHomeBinding
+    private lateinit var b: ActivityAdminHomeBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // inflamos el binding basado en activity_admin_home.xml
-        binding = ActivityAdminHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreate(s: Bundle?) {
+        super.onCreate(s)
+        b = ActivityAdminHomeBinding.inflate(layoutInflater)
+        setContentView(b.root)
 
-        // listeners de botones
-        binding.btnMaterials.setOnClickListener {
+        b.btnMaterials.setOnClickListener {
             startActivity(Intent(this, MaterialListActivity::class.java))
         }
-        // binding.btnProducts.setOnClickListener { ... }
-        // binding.btnEvents.setOnClickListener { ... }
-        // binding.btnNotif.setOnClickListener { ... }
+
+        b.btnProducts.setOnClickListener {
+            startActivity(Intent(this, ProductosListActivity::class.java))
+        }
+
+
+        // si quieres, aquí puedes dejar vacíos los otros botones:
+        // b.btnProducts.setOnClickListener { /* ... */ }
+        // b.btnEvents   .setOnClickListener { /* ... */ }
+        // b.btnNotif    .setOnClickListener { /* ... */ }
     }
 }
