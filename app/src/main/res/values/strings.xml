@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AppReparto</string>
+    <string name="bienvenido">¡Bienvenido!</string>
+
 </resources>
