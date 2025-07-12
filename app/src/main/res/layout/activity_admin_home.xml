@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@color/creamDeep">
+
+    <!-- Saludo simple -->
+    <TextView
+        android:id="@+id/tvGreeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¡Bienvenido Admin!"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/textPrimaryDark"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Botones en cuadrícula 2×2 -->
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/grid"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:columnCount="2"
+        app:layout_constraintTop_toBottomOf="@id/tvGreeting"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:useDefaultMargins="true">
+
+        <Button
+            android:id="@+id/btnMaterials"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="Materiales"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/btnSuccess"/>
+
+        <Button
+            android:id="@+id/btnProducts"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="Productos"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/btnInfo"/>
+
+        <Button
+            android:id="@+id/btnEvents"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="Eventos"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/btnWarning"/>
+
+        <Button
+            android:id="@+id/btnNotif"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="Notificaciones"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/btnDanger"/>
+
+    </androidx.gridlayout.widget.GridLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
