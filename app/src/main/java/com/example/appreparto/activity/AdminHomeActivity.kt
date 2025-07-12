@@ -18,6 +18,9 @@ class AdminHomeActivity : AppCompatActivity() {
         binding.btnMaterials.setOnClickListener {
             startActivity(Intent(this, MaterialListActivity::class.java))
         }
+        binding.btnEvents.setOnClickListener {
+            startActivity(Intent(this, EventoListActivity::class.java))
+        }
         // binding.btnProducts.setOnClickListener { ... }
         // binding.btnEvents.setOnClickListener { ... }
         // binding.btnNotif.setOnClickListener { ... }
