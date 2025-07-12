@@ -1,7 +1,7 @@
 // ui/material/MaterialAdapter.kt
 package com.example.appreparto.ui.theme
 
-import Material
+import com.example.appreparto.model.Material
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

@@ -1,4 +1,4 @@
-
+package com.example.appreparto.model
 data class Material(
     val id: Long = System.currentTimeMillis(),
     var nombre: String,

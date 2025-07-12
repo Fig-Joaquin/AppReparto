@@ -3,22 +3,23 @@ package com.example.appreparto.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.appreparto.databinding.ActivityHomeBinding
+import com.example.appreparto.databinding.ActivityAdminHomeBinding
 
 class AdminHomeActivity : AppCompatActivity() {
-    private lateinit var b: ActivityHomeBinding
+    private lateinit var binding: ActivityAdminHomeBinding
 
-    override fun onCreate(s: Bundle?) {
-        super.onCreate(s)
-        b = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(b.root)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // inflamos el binding basado en activity_admin_home.xml
+        binding = ActivityAdminHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        b.btnMaterials.setOnClickListener {
+        // listeners de botones
+        binding.btnMaterials.setOnClickListener {
             startActivity(Intent(this, MaterialListActivity::class.java))
         }
-        // si quieres, aquí puedes dejar vacíos los otros botones:
-        // b.btnProducts.setOnClickListener { /* ... */ }
-        // b.btnEvents   .setOnClickListener { /* ... */ }
-        // b.btnNotif    .setOnClickListener { /* ... */ }
+        // binding.btnProducts.setOnClickListener { ... }
+        // binding.btnEvents.setOnClickListener { ... }
+        // binding.btnNotif.setOnClickListener { ... }
     }
 }

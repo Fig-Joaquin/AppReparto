@@ -1,13 +1,9 @@
 package com.example.appreparto.activity
 
-import Material
+import com.example.appreparto.model.Material
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.appreparto.R
 import com.example.appreparto.databinding.ActivityMaterialDetailBinding
 import com.example.appreparto.viewmodel.MaterialViewModel
 

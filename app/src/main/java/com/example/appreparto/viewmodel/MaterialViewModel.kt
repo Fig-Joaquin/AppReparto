@@ -1,11 +1,10 @@
 package com.example.appreparto.viewmodel
 
-import Material
-import MaterialRepository
+import com.example.appreparto.model.Material
+import com.example.appreparto.repository.MaterialRepository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 
 class MaterialViewModel : ViewModel() {
     private val _materials = MutableLiveData<List<Material>>()
