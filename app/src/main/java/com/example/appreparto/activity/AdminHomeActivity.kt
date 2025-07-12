@@ -18,6 +18,15 @@ class AdminHomeActivity : AppCompatActivity() {
         binding.btnMaterials.setOnClickListener {
             startActivity(Intent(this, MaterialListActivity::class.java))
         }
+
+        binding.btnNotif.setOnClickListener {
+            // Si tu NotificationActivity espera un eventId, pásalo aquí;
+            // si no, simplemente lanza la pantalla genérica:
+            val intent = Intent(this, NotificationActivity::class.java)
+            // intent.putExtra("eventId", /* algún id válido o -1 */)
+            startActivity(intent)
+        }
+
         // binding.btnProducts.setOnClickListener { ... }
         // binding.btnEvents.setOnClickListener { ... }
         // binding.btnNotif.setOnClickListener { ... }
