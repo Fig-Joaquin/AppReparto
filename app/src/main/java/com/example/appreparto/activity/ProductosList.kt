@@ -16,14 +16,12 @@ class ProductosListActivity : AppCompatActivity() {
 
     private val adapter = ProductosAdapter(
         onDelete = { vm.delete(it.id) },
+
+
         onEdit = {
             startActivity(
-                Intent(
-                    /* context = */ /* this can't be used directly here inside the property initializer because
-                       the Activity isn't constructed yet; move adapter initialization into onCreate or use a lazy block */
-                    // FIX: move adapter creation into onCreate to safely use `this`
-                    Intent()
-                )
+                Intent(this, ProductosDetailActivity::class.java).putExtra("id", it.id)
+
             )
         }
     )
@@ -55,3 +53,4 @@ class ProductosListActivity : AppCompatActivity() {
         }
     }
 }
+

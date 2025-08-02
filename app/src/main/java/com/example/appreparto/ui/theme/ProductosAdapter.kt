@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appreparto.Productos
+import com.example.appreparto.model.Productos
 import com.example.appreparto.databinding.ItemProductoBinding
 
 class ProductosAdapter (
@@ -32,6 +32,7 @@ class ProductosAdapter (
         val p = getItem(position)
         tvName.text = p.nombre
         tvDesc.text = p.descripcion
+        tvStock.text = p.stock.toString()
         root.setOnClickListener { onEdit(p) }
         btnDelete.setOnClickListener { onDelete(p) }
 
