@@ -8,31 +8,43 @@ import com.example.appreparto.databinding.ActivityProductosDetailBinding
 import com.example.appreparto.viewmodel.ProductosViweModel
 
 class ProductosDetailActivity : AppCompatActivity() {
+
+    companion object {const val EXTRA_PRODUCTO = "producto"}
+
     private lateinit var b: ActivityProductosDetailBinding
-    private val vm: ProductosViweModel by viewModels()     // sin Factory
+
+    private val vm: ProductosViweModel by viewModels()
 
     private var editing: Productos? = null
 
-    override fun onCreate(s: Bundle?) {
-        super.onCreate(s)
-        b = ActivityProductosDetailBinding.inflate(layoutInflater); setContentView(b.root)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        b = ActivityProductosDetailBinding.inflate(layoutInflater)
+        setContentView(b.root)
 
-        editing = intent.getParcelableExtra("mat")
+        @Suppress("DEPRECATION")
+        editing = intent.getParcelableExtra(EXTRA_PRODUCTO)
+
         editing?.let { fillForm(it) }
 
         b.btnSave.setOnClickListener {
-            val p = (editing ?: Productos(
-                nombre = "", descripcion = "", cantidad = 0, unidad = "", valorUnitario = 0.0
-            )).apply {
-                nombre = b.etNombre.text.toString()
-                descripcion = b.etDesc.text.toString()
-                cantidad = b.etCantidad.text.toString().toIntOrNull() ?: 0
-                unidad = b.etUnidad.text.toString()
-                valorUnitario = b.etValor.text.toString().toDoubleOrNull() ?: 0.0
-            }
-            vm.save(p)
+            vm.save(buildProductosFormForm())
+
             finish()
         }
+    }
+
+    private fun buildProductosFormForm(): Productos{
+        val base = editing ?: Productos(
+            nombre = "", descripcion = "", cantidad = 0, unidad = "", valorUnitario = 0.0
+        )
+
+        return base.copy(
+            nombre = b.etNombre.text.toString(),
+            descripcion = b.etDesc.text.toString(),
+            cantidad = b.etCantidad.text.toString().toIntOrNull() ?: 0,
+            valorUnitario = b.etValor.text.toString().toDoubleOrNull() ?: 0.0
+        )
     }
 
     private fun fillForm(p: Productos) {
