@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.appreparto">
 
     <application
         android:allowBackup="true"
@@ -10,24 +11,45 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppReparto">
-        <activity
-            android:name=".activity.Home"
-            android:exported="true"
-            android:theme="@style/Theme.AppReparto">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN"/>
-            <category android:name="android.intent.category.LAUNCHER"/>
-        </intent-filter>
-    </activity>
-    <activity
-        android:name=".activity.MaterialListActivity"
-    android:exported="false" />
-    <activity
-        android:name=".activity.MaterialDetailActivity"
-    android:exported="false" />
-    <activity
-        android:name=".MainActivity"
-        android:exported="false"/>
-</application>
 
-    </manifest>
+        <!-- Pantalla de Login (launcher) -->
+        <activity
+            android:name=".activity.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- Dashboards -->
+        <activity
+            android:name=".activity.AdminHomeActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".activity.RepartidorHomeActivity"
+            android:exported="false"/>
+
+        <!-- Productos -->
+        <activity
+            android:name=".activity.ProductosListActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".activity.ProductosDetailActivity"
+            android:exported="false"/>
+
+        <!-- Materiales -->
+        <activity
+            android:name=".activity.MaterialListActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".activity.MaterialDetailActivity"
+            android:exported="false"/>
+
+        <!-- Notificaciones -->
+        <activity
+            android:name=".activity.NotificationActivity"
+            android:exported="false"/>
+
+    </application>
+</manifest>

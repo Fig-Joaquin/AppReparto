@@ -5,6 +5,23 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <!-- Paleta Oscura Pastel -->
+    <color name="mintDeep">#75B39D</color>
+    <color name="lavenderDeep">#9A7BCC</color>
+    <color name="peachDeep">#D29EA0</color>
+    <color name="creamDeep">#E2D2C6</color>
+    <color name="skyDeep">#7BA8B8</color>
+    <color name="textPrimaryDark">#263238</color>
+    <color name="textSecondaryDark">#455A64</color>
+    <color name="coralDeep">#D36B6F</color>
+    <color name="mustardDeep">#D4C15A</color>
+
+    <!-- Botones -->
+    <color name="btnSuccess">#75B39D</color>
+    <color name="btnInfo">#9A7BCC</color>
+    <color name="btnWarning">#D4C15A</color>
+    <color name="btnDanger">#D36B6F</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
