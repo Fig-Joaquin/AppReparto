@@ -1,23 +1,34 @@
 package com.example.appreparto.activity
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
+import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.widget.EditText
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appreparto.databinding.ActivityNotificationBinding
 import com.example.appreparto.model.Notificacion
 import com.example.appreparto.repository.NotificationRepository
+import com.example.appreparto.session.SessionManager
+import com.example.appreparto.session.isAdmin
 import com.example.appreparto.viewmodel.NotificationViewModel
 import com.example.appreparto.viewmodel.NotificationViewModelFactory
+import kotlinx.coroutines.launch
 import java.util.*
 
 class NotificationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNotificationBinding
     private val eventId: Int by lazy { intent.getIntExtra("eventId", -1) }
+
     private val viewModel: NotificationViewModel by viewModels {
-        NotificationViewModelFactory(eventId)
+        NotificationViewModelFactory(this, eventId)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,15 +61,62 @@ class NotificationActivity : AppCompatActivity() {
             adapter.submitList(lista)
         }
 
-        // FAB inyecta nueva notificación en tiempo real
+        // Sesión y rol
+        val session = SessionManager(this)
+        val email = session.getEmail()
+
+        // Solo admin puede crear notificaciones
+        if (isAdmin(email)) {
+            binding.fabAdd.visibility = View.VISIBLE
+        } else {
+            binding.fabAdd.visibility = View.GONE
+        }
+
+        val repo = NotificationRepository(this)
+
         binding.fabAdd.setOnClickListener {
-            val newId = Random().nextInt(10000)
-            val mensaje = "Nueva notificación $newId"
-            val now = Date()
-            NotificationRepository.add(
-                Notificacion(newId, eventId, mensaje, now)
-            )
-            viewModel.refresh()
+            // Diálogo para mensaje y programación
+            val input = EditText(this).apply {
+                hint = "Mensaje de notificación"
+            }
+
+            AlertDialog.Builder(this)
+                .setTitle("Agendar notificación")
+                .setView(input)
+                .setPositiveButton("Siguiente") { _, _ ->
+                    val mensaje = input.text.toString().ifBlank { "Recordatorio" }
+                    val nowCal = Calendar.getInstance()
+
+                    // Fecha
+                    DatePickerDialog(this, { _, year, month, dayOfMonth ->
+                        val dateCal = Calendar.getInstance().apply {
+                            set(year, month, dayOfMonth)
+                        }
+
+                        // Hora
+                        TimePickerDialog(this, { _, hourOfDay, minute ->
+                            dateCal.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                            dateCal.set(Calendar.MINUTE, minute)
+                            dateCal.set(Calendar.SECOND, 0)
+                            val scheduledTime = dateCal.timeInMillis
+
+                            lifecycleScope.launch {
+                                repo.add(
+                                    Notificacion(
+                                        id = 0,
+                                        eventId = eventId,
+                                        mensaje = mensaje,
+                                        fechaHora = scheduledTime
+                                    )
+                                )
+                                viewModel.refresh()
+                            }
+                        }, nowCal.get(Calendar.HOUR_OF_DAY), nowCal.get(Calendar.MINUTE), true).show()
+
+                    }, nowCal.get(Calendar.YEAR), nowCal.get(Calendar.MONTH), nowCal.get(Calendar.DAY_OF_MONTH)).show()
+                }
+                .setNegativeButton("Cancelar", null)
+                .show()
         }
     }
 }
