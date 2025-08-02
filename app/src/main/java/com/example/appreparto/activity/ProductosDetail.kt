@@ -29,6 +29,7 @@ class ProductosDetailActivity : AppCompatActivity() {
 
         b.btnSave.setOnClickListener {
             vm.save(buildProductosFormForm())
+
             finish()
         }
     }

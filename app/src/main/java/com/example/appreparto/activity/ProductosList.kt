@@ -16,9 +16,11 @@ class ProductosListActivity : AppCompatActivity() {
 
     private val adapter = ProductosAdapter(
         onDelete = { vm.delete(it.id) },
+
         onEdit = {startActivity(
             Intent(this, ProductosDetailActivity::class.java).putExtra("id", it.id))
         }
+
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,9 +33,8 @@ class ProductosListActivity : AppCompatActivity() {
 
         vm.productos.observe(this) { list -> adapter.submitList(list) }
 
+
         b.fabAdd.setOnClickListener {
             startActivity(Intent(this, ProductosDetailActivity::class.java))
         }
     }
-
-}

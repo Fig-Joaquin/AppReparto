@@ -11,6 +11,7 @@ import com.example.appreparto.databinding.ItemProductoBinding
 class ProductosAdapter (
     private val onDelete: (Productos) -> Unit,
     private val onEdit: (Productos) -> Unit
+
 ) : ListAdapter<Productos, ProductosAdapter.ProductosViewHolder>(Diff) {
 
 
@@ -19,6 +20,7 @@ class ProductosAdapter (
             override fun areItemsTheSame(o: Productos, n: Productos) = o.id == n.id
             override fun areContentsTheSame(o: Productos, n: Productos) = o == n
         }
+
     }
 
     inner class ProductosViewHolder(val binding: ItemProductoBinding) : RecyclerView.ViewHolder(binding.root)
@@ -32,5 +34,6 @@ class ProductosAdapter (
         tvDesc.text = p.descripcion
         root.setOnClickListener { onEdit(p) }
         btnDelete.setOnClickListener { onDelete(p) }
+
     }
 }

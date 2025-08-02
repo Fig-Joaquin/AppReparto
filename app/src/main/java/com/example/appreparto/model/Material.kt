@@ -1,9 +1,14 @@
-package com.example.appreparto.model
+package com.example.appreparto
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "materiales")
 data class Material(
-    val id: Long = System.currentTimeMillis(),
-    var nombre: String,
-    var descripcion: String,
-    var cantidad: Int,
-    var unidad: String,
-    var valorUnitario: Double
+    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
+    val nombre: String,
+    val descripcion: String,
+    val cantidad: Int,
+    val unidad: String,
+    val valorUnitario: Double
 )

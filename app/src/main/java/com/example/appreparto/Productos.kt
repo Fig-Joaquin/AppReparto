@@ -1,5 +1,6 @@
 package com.example.appreparto
 
+
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
