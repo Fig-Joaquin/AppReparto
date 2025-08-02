@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.appreparto.Productos
-import com.example.appreparto.ProductosRepository
+import com.example.appreparto.model.Productos
+import com.example.appreparto.repository.ProductosRepository
 import com.example.appreparto.dataBase.ProductosDataBase
 import kotlinx.coroutines.launch
 

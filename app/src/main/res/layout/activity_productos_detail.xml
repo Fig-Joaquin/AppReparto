@@ -29,25 +29,25 @@
             android:layout_marginTop="12dp"/>
 
         <EditText
-            android:id="@+id/etCantidad"
+            android:id="@+id/etStock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Cantidad"
+            android:hint="Stock"
             android:inputType="number"
             android:layout_marginTop="12dp"/>
 
         <EditText
-            android:id="@+id/etUnidad"
+            android:id="@+id/etCategoria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Unidad"
+            android:hint="Categoria"
             android:layout_marginTop="12dp"/>
 
         <EditText
             android:id="@+id/etValor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Valor unitario"
+            android:hint="Valor"
             android:inputType="numberDecimal"
             android:layout_marginTop="12dp"/>
 

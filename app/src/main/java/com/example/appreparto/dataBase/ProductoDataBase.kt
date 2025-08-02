@@ -7,7 +7,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.appreparto.Dao.ProductosDao
-import com.example.appreparto.Productos
+import com.example.appreparto.model.Productos
 
 @Database(entities = [Productos::class], version = 1, exportSchema = false) abstract class ProductosDataBase : RoomDatabase() {
     abstract fun productosDao() : ProductosDao

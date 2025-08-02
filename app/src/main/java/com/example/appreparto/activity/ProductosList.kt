@@ -17,8 +17,10 @@ class ProductosListActivity : AppCompatActivity() {
     private val adapter = ProductosAdapter(
         onDelete = { vm.delete(it.id) },
 
-        onEdit = {startActivity(
-            Intent(this, ProductosDetailActivity::class.java).putExtra("id", it.id))
+        onEdit = {
+            startActivity(
+                Intent(this, ProductosDetailActivity::class.java).putExtra("id", it.id)
+            )
         }
 
     )
@@ -38,3 +40,4 @@ class ProductosListActivity : AppCompatActivity() {
             startActivity(Intent(this, ProductosDetailActivity::class.java))
         }
     }
+}

@@ -1,5 +1,4 @@
-package com.example.appreparto
-
+package com.example.appreparto.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,7 +8,7 @@ data class Productos(
     @PrimaryKey(autoGenerate = true) val id: Long = 0L,
     val nombre: String,
     val descripcion: String,
-    val cantidad: Int,
-    val unidad: String,
-    val valorUnitario: Double
+    val stock: Int,
+    val categoria: String,
+    val valor: Double
 )
