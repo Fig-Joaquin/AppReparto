@@ -51,5 +51,13 @@
             android:name=".activity.NotificationActivity"
             android:exported="false"/>
 
+        <!-- Eventos -->
+        <activity
+            android:name=".activity.EventoListActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".activity.EventoDetailActivity"
+            android:exported="false"/>
+
     </application>
 </manifest>
