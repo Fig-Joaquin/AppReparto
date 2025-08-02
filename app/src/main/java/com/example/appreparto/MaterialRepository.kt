@@ -1,7 +1,14 @@
-object MaterialRepository {           // ←  ahora es singleton
-    private val list = mutableListOf<Material>()
-    fun getAll(): List<Material> = list
-    fun save(m: Material) { list.removeAll { it.id == m.id }; list.add(m) }
-    fun delete(id: Long) { list.removeAll { it.id == id } }
-}
 
+package com.example.appreparto
+
+import androidx.lifecycle.LiveData
+import com.example.appreparto.data.MaterialDao
+
+class MaterialRepository(private val dao: MaterialDao) {
+
+
+    val materiales: LiveData<List<Material>> = dao.getAll()
+
+    suspend fun save(m: Material) = dao.insert(m)
+    suspend fun delete(id: Long) = dao.deleteById(id)
+}
