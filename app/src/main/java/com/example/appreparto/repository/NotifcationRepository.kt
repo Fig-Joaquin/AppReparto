@@ -1,26 +1,26 @@
 package com.example.appreparto.repository
 
+import android.content.Context
+import com.example.appreparto.data.AppDatabase
 import com.example.appreparto.model.Notificacion
-import java.util.*
 
-object NotificationRepository {
-    // Datos de ejemplo inyectados aquí:
-    private val data = mutableListOf(
-        Notificacion(1, eventId = 100, mensaje = "Evento creado correctamente", fechaHora = Date()),
-        Notificacion(2, eventId = 100, mensaje = "Producto X agregado al evento", fechaHora = Date()),
-        Notificacion(3, eventId = 101, mensaje = "Stock bajo en Material Y", fechaHora = Date())
-    )
+class NotificationRepository(context: Context) {
+    private val dao = AppDatabase.getInstance(context).notificationDao()
 
-    /** Devuelve solo las de un evento */
-    fun getByEvent(eventId: Int): List<Notificacion> =
-        data.filter { it.eventId == eventId }
+    suspend fun getByEvent(eventId: Int): List<Notificacion> =
+        dao.getByEvent(eventId)
 
-    /** Devuelve todas si no filtramos por evento */
-    fun getAll(): List<Notificacion> =
-        data.toList()
+    suspend fun getAll(): List<Notificacion> =
+        dao.getAll()
 
-    /** Añade una nueva notificación */
-    fun add(n: Notificacion) {
-        data.add(n)
+    suspend fun add(notification: Notificacion) {
+        dao.insert(notification)
+    }
+
+    suspend fun getPendingToNotify(nowMillis: Long): List<Notificacion> =
+        dao.getPendingToNotify(nowMillis)
+
+    suspend fun markNotified(id: Long) {
+        dao.markNotified(id)
     }
 }

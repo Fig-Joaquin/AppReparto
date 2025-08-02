@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.appreparto">
 
+    <!-- Permiso declarativo (Android 13+ se pide también en runtime) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -49,6 +53,14 @@
         <!-- Notificaciones -->
         <activity
             android:name=".activity.NotificationActivity"
+            android:exported="false"/>
+
+        <!-- Eventos -->
+        <activity
+            android:name=".activity.EventoListActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".activity.EventoDetailActivity"
             android:exported="false"/>
 
     </application>

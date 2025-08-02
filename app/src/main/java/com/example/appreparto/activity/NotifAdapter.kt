@@ -1,6 +1,7 @@
 package com.example.appreparto.activity
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -34,7 +35,16 @@ class NotifAdapter : ListAdapter<Notificacion, NotifAdapter.VH>(DIFF) {
 
         fun bind(n: Notificacion) {
             b.tvMensaje.text = n.mensaje
-            b.tvFecha.text = fmt.format(n.fechaHora)
+
+            val now = System.currentTimeMillis()
+            val fechaTexto = fmt.format(Date(n.fechaHora))
+            b.tvFecha.text = if (n.fechaHora > now) {
+                "Programada para: $fechaTexto"
+            } else {
+                "Fecha: $fechaTexto"
+            }
+
+            b.root.alpha = if (n.notified) 0.6f else 1f
         }
     }
 }

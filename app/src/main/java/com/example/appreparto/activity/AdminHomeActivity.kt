@@ -18,11 +18,15 @@ class AdminHomeActivity : AppCompatActivity() {
             startActivity(Intent(this, MaterialListActivity::class.java))
         }
 
-        // Productos (usamos la actividad que tu compañero creó)
+        // Productos
         binding.btnProducts.setOnClickListener {
             startActivity(Intent(this, ProductosListActivity::class.java))
         }
 
+        // Evento (AÑADIDO)
+        binding.btnEvents.setOnClickListener {
+            startActivity(Intent(this, EventoListActivity::class.java))
+        }
 
         // Notificaciones
         binding.btnNotif.setOnClickListener {
