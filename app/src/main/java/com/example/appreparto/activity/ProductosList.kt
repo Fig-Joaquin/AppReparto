@@ -16,31 +16,25 @@ class ProductosListActivity : AppCompatActivity() {
 
     private val adapter = ProductosAdapter(
         onDelete = { vm.delete(it.id) },
-        onEdit = {
-            val intent = Intent(this, ProductosDetailActivity::class.java)
-                .putExtra("id", it.id)
-            startActivity(intent) }
+
+        onEdit = {startActivity(
+            Intent(this, ProductosDetailActivity::class.java).putExtra("id", it.id))
+        }
+
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         b = ActivityProductosListBinding.inflate(layoutInflater)
         setContentView(b.root)
-        b.rvProductos.layoutManager = LinearLayoutManager(this)
 
+        b.rvProductos.layoutManager = LinearLayoutManager(this)
         b.rvProductos.adapter = adapter
 
-        vm.productos.observe(this) { list -> adapter.submit(list) }
-        vm.loadAll()
+        vm.productos.observe(this) { list -> adapter.submitList(list) }
+
 
         b.fabAdd.setOnClickListener {
             startActivity(Intent(this, ProductosDetailActivity::class.java))
         }
     }
-
-
-    override fun onResume() {
-        super.onResume()
-        vm.loadAll()
-    }
-}
