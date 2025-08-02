@@ -10,16 +10,23 @@ class AdminHomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // inflamos el binding basado en activity_admin_home.xml
         binding = ActivityAdminHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // listeners de botones
+        // Materiales
         binding.btnMaterials.setOnClickListener {
             startActivity(Intent(this, MaterialListActivity::class.java))
         }
-        // binding.btnProducts.setOnClickListener { ... }
-        // binding.btnEvents.setOnClickListener { ... }
-        // binding.btnNotif.setOnClickListener { ... }
+
+        // Productos (usamos la actividad que tu compañero creó)
+        binding.btnProducts.setOnClickListener {
+            startActivity(Intent(this, ProductosListActivity::class.java))
+        }
+
+
+        // Notificaciones
+        binding.btnNotif.setOnClickListener {
+            startActivity(Intent(this, NotificationActivity::class.java))
+        }
     }
 }
